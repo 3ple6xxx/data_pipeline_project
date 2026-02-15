@@ -1,0 +1,15 @@
+[2026-02-14T17:16:37.179+0000] {processor.py:161} INFO - Started process (PID=10747) to work on /opt/airflow/dags/second_dag.py
+[2026-02-14T17:16:37.182+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/second_dag.py for tasks to queue
+[2026-02-14T17:16:37.195+0000] {logging_mixin.py:188} INFO - [2026-02-14T17:16:37.194+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/second_dag.py
+[2026-02-14T17:16:38.993+0000] {logging_mixin.py:188} INFO - [2026-02-14T17:16:38.977+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/second_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/second_dag.py", line 17, in <module>
+    retry_delay=timedelta(minutes=10), #Задержка между повторными выполнениями
+                ^^^^^^^^^
+NameError: name 'timedelta' is not defined
+[2026-02-14T17:16:38.999+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/second_dag.py
+[2026-02-14T17:16:39.052+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/second_dag.py took 1.899 seconds

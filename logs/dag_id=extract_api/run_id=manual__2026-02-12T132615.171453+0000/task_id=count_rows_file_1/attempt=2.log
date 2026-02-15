@@ -1,0 +1,18 @@
+[2026-02-13T12:11:22.117+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-13T12:11:22.211+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: extract_api.count_rows_file_1 manual__2026-02-12T13:26:15.171453+00:00 [queued]>
+[2026-02-13T12:11:22.235+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: extract_api.count_rows_file_1 manual__2026-02-12T13:26:15.171453+00:00 [queued]>
+[2026-02-13T12:11:22.258+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2026-02-13T12:11:22.301+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): count_rows_file_1> on 2026-02-12 13:26:15.171453+00:00
+[2026-02-13T12:11:22.330+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=4669) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-13T12:11:22.333+0000] {standard_task_runner.py:64} INFO - Started process 4686 to run task
+[2026-02-13T12:11:22.341+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'extract_api', 'count_rows_file_1', 'manual__2026-02-12T13:26:15.171453+00:00', '--job-id', '85', '--raw', '--subdir', 'DAGS_FOLDER/extract_api.py', '--cfg-path', '/tmp/tmpgazib1dc']
+[2026-02-13T12:11:22.357+0000] {standard_task_runner.py:91} INFO - Job 85: Subtask count_rows_file_1
+[2026-02-13T12:11:22.526+0000] {task_command.py:426} INFO - Running <TaskInstance: extract_api.count_rows_file_1 manual__2026-02-12T13:26:15.171453+00:00 [running]> on host 50f0b91de738
+[2026-02-13T12:11:22.774+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='extract_api' AIRFLOW_CTX_TASK_ID='count_rows_file_1' AIRFLOW_CTX_EXECUTION_DATE='2026-02-12T13:26:15.171453+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-12T13:26:15.171453+00:00'
+[2026-02-13T12:11:22.777+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-13T12:11:22.869+0000] {logging_mixin.py:188} INFO - Файл data_part_1.json: 60 строк
+[2026-02-13T12:11:22.872+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-02-13T12:11:22.884+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-13T12:11:22.929+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=extract_api, task_id=count_rows_file_1, run_id=manual__2026-02-12T13:26:15.171453+00:00, execution_date=20260212T132615, start_date=20260213T121122, end_date=20260213T121122
+[2026-02-13T12:11:23.021+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-13T12:11:23.047+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

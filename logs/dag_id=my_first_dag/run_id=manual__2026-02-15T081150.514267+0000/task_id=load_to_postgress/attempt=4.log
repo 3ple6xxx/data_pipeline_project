@@ -1,0 +1,145 @@
+[2026-02-15T08:36:48.320+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-15T08:36:48.358+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: my_first_dag.load_to_postgress manual__2026-02-15T08:11:50.514267+00:00 [queued]>
+[2026-02-15T08:36:48.373+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: my_first_dag.load_to_postgress manual__2026-02-15T08:11:50.514267+00:00 [queued]>
+[2026-02-15T08:36:48.375+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 4
+[2026-02-15T08:36:48.392+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): load_to_postgress> on 2026-02-15 08:11:50.514267+00:00
+[2026-02-15T08:36:48.407+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=15825) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-15T08:36:48.409+0000] {standard_task_runner.py:64} INFO - Started process 15829 to run task
+[2026-02-15T08:36:48.407+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'my_first_dag', 'load_to_postgress', 'manual__2026-02-15T08:11:50.514267+00:00', '--job-id', '106', '--raw', '--subdir', 'DAGS_FOLDER/first_dag.py', '--cfg-path', '/tmp/tmpdwgh1_eh']
+[2026-02-15T08:36:48.410+0000] {standard_task_runner.py:91} INFO - Job 106: Subtask load_to_postgress
+[2026-02-15T08:36:48.500+0000] {task_command.py:426} INFO - Running <TaskInstance: my_first_dag.load_to_postgress manual__2026-02-15T08:11:50.514267+00:00 [running]> on host 50f0b91de738
+[2026-02-15T08:36:48.615+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='my_first_dag' AIRFLOW_CTX_TASK_ID='load_to_postgress' AIRFLOW_CTX_EXECUTION_DATE='2026-02-15T08:11:50.514267+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-15T08:11:50.514267+00:00'
+[2026-02-15T08:36:48.617+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-15T08:36:48.675+0000] {base.py:84} INFO - Using connection ID 'source_db' for task execution.
+[2026-02-15T08:36:48.676+0000] {sql.py:254} WARNING - This setter is for backward compatibility and should not be used.
+Since the introduction of connection property, the providers listed below breaks due to assigning value to self.connection in their __init__ method.
+* apache-***-providers-mysql<5.7.1
+* apache-***-providers-elasticsearch<5.5.1
+* apache-***-providers-postgres<5.13.0
+[2026-02-15T08:36:48.685+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 2), 272.0054842547, 277.58025431, 268.748522148, 270.756652832, 270.756652832, 37838100, 'AAPL')
+[2026-02-15T08:36:48.689+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.698+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 5), 270.3870074465, 271.2561892507, 265.8912142612, 267.0101623535, 267.0101623535, 45647200, 'AAPL')
+[2026-02-15T08:36:48.700+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.709+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 6), 266.7503924619, 267.2998660935, 261.874949699, 262.1147155762, 262.1147155762, 52352100, 'AAPL')
+[2026-02-15T08:36:48.712+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.721+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 7), 262.9539513876, 263.4334831315, 259.5671060012, 260.0866088867, 260.0866088867, 48309800, 'AAPL')
+[2026-02-15T08:36:48.723+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.732+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 8), 256.7797203953, 259.0476178563, 255.460962291, 258.7978515625, 258.7978515625, 50419300, 'AAPL')
+[2026-02-15T08:36:48.735+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.744+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 9), 258.8377955175, 259.9667440583, 255.9804837143, 259.127532959, 259.127532959, 39997000, 'AAPL')
+[2026-02-15T08:36:48.746+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.756+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 12), 258.9177364764, 261.0557201137, 256.5599267903, 260.0067138672, 260.0067138672, 45263800, 'AAPL')
+[2026-02-15T08:36:48.758+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.768+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 13), 258.4781303943, 261.5652379723, 258.1484523182, 260.8059387207, 260.8059387207, 45730800, 'AAPL')
+[2026-02-15T08:36:48.770+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.780+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 14), 259.2474181185, 261.5752571005, 256.4700180914, 259.7169799805, 259.7169799805, 40019400, 'AAPL')
+[2026-02-15T08:36:48.783+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.793+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 15), 260.4063187564, 260.79596879, 256.8096782083, 257.9685974121, 257.9685974121, 39388600, 'AAPL')
+[2026-02-15T08:36:48.796+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.806+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 16), 257.6589020183, 258.6579671913, 254.6916772349, 255.2911224365, 255.2911224365, 72142800, 'AAPL')
+[2026-02-15T08:36:48.808+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.818+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 20), 252.4937373957, 254.551809217, 243.1924430561, 246.4693756104, 246.4693756104, 80267500, 'AAPL')
+[2026-02-15T08:36:48.821+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.829+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 21), 248.4675090444, 251.32483609, 244.9507953165, 247.4184875488, 247.4184875488, 54641700, 'AAPL')
+[2026-02-15T08:36:48.831+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.840+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 22), 248.9670398845, 250.7653602579, 247.9180183962, 248.1178436279, 248.1178436279, 39708300, 'AAPL')
+[2026-02-15T08:36:48.842+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.852+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 23), 247.0888078224, 249.1768503915, 244.4512611104, 247.8081207275, 247.8081207275, 41689000, 'AAPL')
+[2026-02-15T08:36:48.854+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.863+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 26), 251.2449001563, 256.3201529578, 249.5664780184, 255.1712341309, 255.1712341309, 55969200, 'AAPL')
+[2026-02-15T08:36:48.866+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.875+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 27), 258.9277169221, 261.7051166971, 257.9685924683, 258.0285339355, 258.0285339355, 49648300, 'AAPL')
+[2026-02-15T08:36:48.877+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.886+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 28), 257.4091472417, 258.6180076182, 254.2720830679, 256.2002868652, 256.2002868652, 41288000, 'AAPL')
+[2026-02-15T08:36:48.889+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.897+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 29), 257.7588066809, 259.4072580677, 254.1721664792, 258.0385437012, 258.0385437012, 67253000, 'AAPL')
+[2026-02-15T08:36:48.900+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.908+0000] {sql.py:772} INFO - Running statement: 
+            INSERT INTO stock_prices (date, open, high, low, close, adj_close, volume, symbol)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (symbol, date) DO NOTHING
+        , parameters: (datetime.date(2026, 1, 30), 254.9314433111, 261.6551472598, 251.9442331322, 259.2374267578, 259.2374267578, 92443400, 'AAPL')
+[2026-02-15T08:36:48.911+0000] {sql.py:781} INFO - Rows affected: 1
+[2026-02-15T08:36:48.914+0000] {first_dag.py:61} INFO - Загружено 20 записей
+[2026-02-15T08:36:48.914+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-02-15T08:36:48.915+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-15T08:36:48.926+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=my_first_dag, task_id=load_to_postgress, run_id=manual__2026-02-15T08:11:50.514267+00:00, execution_date=20260215T081150, start_date=20260215T083648, end_date=20260215T083648
+[2026-02-15T08:36:48.985+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-15T08:36:49.005+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-15T08:36:49.009+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

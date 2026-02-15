@@ -1,0 +1,22 @@
+[2026-02-13T12:11:22.138+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-13T12:11:22.231+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: extract_api.count_files manual__2026-02-12T13:26:15.171453+00:00 [queued]>
+[2026-02-13T12:11:22.265+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: extract_api.count_files manual__2026-02-12T13:26:15.171453+00:00 [queued]>
+[2026-02-13T12:11:22.272+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2026-02-13T12:11:22.309+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): count_files> on 2026-02-12 13:26:15.171453+00:00
+[2026-02-13T12:11:22.351+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'extract_api', 'count_files', 'manual__2026-02-12T13:26:15.171453+00:00', '--job-id', '90', '--raw', '--subdir', 'DAGS_FOLDER/extract_api.py', '--cfg-path', '/tmp/tmp2ggrtysl']
+[2026-02-13T12:11:22.361+0000] {standard_task_runner.py:91} INFO - Job 90: Subtask count_files
+[2026-02-13T12:11:22.355+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=4667) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-13T12:11:22.363+0000] {standard_task_runner.py:64} INFO - Started process 4688 to run task
+[2026-02-13T12:11:22.525+0000] {task_command.py:426} INFO - Running <TaskInstance: extract_api.count_files manual__2026-02-12T13:26:15.171453+00:00 [running]> on host 50f0b91de738
+[2026-02-13T12:11:22.774+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='extract_api' AIRFLOW_CTX_TASK_ID='count_files' AIRFLOW_CTX_EXECUTION_DATE='2026-02-12T13:26:15.171453+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-12T13:26:15.171453+00:00'
+[2026-02-13T12:11:22.777+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-13T12:11:22.826+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-02-13T12:11:22.837+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'ls -l /opt/***/dags/data/api_data | wc -l']
+[2026-02-13T12:11:22.885+0000] {subprocess.py:86} INFO - Output:
+[2026-02-13T12:11:23.002+0000] {subprocess.py:93} INFO - 3
+[2026-02-13T12:11:23.005+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-02-13T12:11:23.007+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-13T12:11:23.075+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=extract_api, task_id=count_files, run_id=manual__2026-02-12T13:26:15.171453+00:00, execution_date=20260212T132615, start_date=20260213T121122, end_date=20260213T121123
+[2026-02-13T12:11:23.183+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-02-13T12:11:23.222+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-13T12:11:23.248+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

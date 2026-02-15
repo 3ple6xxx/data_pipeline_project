@@ -1,0 +1,40 @@
+[2026-02-12T13:26:18.762+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-12T13:26:18.802+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: extract_api.count_files manual__2026-02-12T13:26:15.171453+00:00 [queued]>
+[2026-02-12T13:26:18.811+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: extract_api.count_files manual__2026-02-12T13:26:15.171453+00:00 [queued]>
+[2026-02-12T13:26:18.813+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-02-12T13:26:18.830+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): count_files> on 2026-02-12 13:26:15.171453+00:00
+[2026-02-12T13:26:18.840+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1183) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-12T13:26:18.840+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'extract_api', 'count_files', 'manual__2026-02-12T13:26:15.171453+00:00', '--job-id', '54', '--raw', '--subdir', 'DAGS_FOLDER/extract_api.py', '--cfg-path', '/tmp/tmpfj0vnw78']
+[2026-02-12T13:26:18.843+0000] {standard_task_runner.py:64} INFO - Started process 1186 to run task
+[2026-02-12T13:26:18.843+0000] {standard_task_runner.py:91} INFO - Job 54: Subtask count_files
+[2026-02-12T13:26:18.927+0000] {task_command.py:426} INFO - Running <TaskInstance: extract_api.count_files manual__2026-02-12T13:26:15.171453+00:00 [running]> on host 8460ca753ff4
+[2026-02-12T13:26:19.036+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='extract_api' AIRFLOW_CTX_TASK_ID='count_files' AIRFLOW_CTX_EXECUTION_DATE='2026-02-12T13:26:15.171453+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-12T13:26:15.171453+00:00'
+[2026-02-12T13:26:19.038+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-12T13:26:19.051+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-02-12T13:26:19.052+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'ls -1 C:/project/api_data | wc - 1']
+[2026-02-12T13:26:19.069+0000] {subprocess.py:86} INFO - Output:
+[2026-02-12T13:26:19.080+0000] {subprocess.py:93} INFO - ls: cannot access 'C:/project/api_data': No such file or directory
+[2026-02-12T13:26:19.081+0000] {subprocess.py:93} INFO -       0       0       0 -
+[2026-02-12T13:26:19.082+0000] {subprocess.py:93} INFO - wc: 1: No such file or directory
+[2026-02-12T13:26:19.082+0000] {subprocess.py:93} INFO -       0       0       0 total
+[2026-02-12T13:26:19.083+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2026-02-12T13:26:19.084+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-12T13:26:19.100+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-02-12T13:26:19.107+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=extract_api, task_id=count_files, run_id=manual__2026-02-12T13:26:15.171453+00:00, execution_date=20260212T132615, start_date=20260212T132618, end_date=20260212T132619
+[2026-02-12T13:26:19.123+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 54 for task count_files (Bash command failed. The command returned a non-zero exit code 1.; 1186)
+[2026-02-12T13:26:19.138+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-02-12T13:26:19.164+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-12T13:26:19.168+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

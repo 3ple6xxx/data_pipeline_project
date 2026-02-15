@@ -1,0 +1,45 @@
+[2026-02-15T08:14:33.214+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-02-15T08:14:33.265+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: my_first_dag.load_to_postgress manual__2026-02-15T08:11:50.514267+00:00 [queued]>
+[2026-02-15T08:14:33.278+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: my_first_dag.load_to_postgress manual__2026-02-15T08:11:50.514267+00:00 [queued]>
+[2026-02-15T08:14:33.280+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2026-02-15T08:14:33.301+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): load_to_postgress> on 2026-02-15 08:11:50.514267+00:00
+[2026-02-15T08:14:33.319+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=14600) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-02-15T08:14:33.321+0000] {standard_task_runner.py:64} INFO - Started process 14612 to run task
+[2026-02-15T08:14:33.320+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'my_first_dag', 'load_to_postgress', 'manual__2026-02-15T08:11:50.514267+00:00', '--job-id', '104', '--raw', '--subdir', 'DAGS_FOLDER/first_dag.py', '--cfg-path', '/tmp/tmpq86kgwua']
+[2026-02-15T08:14:33.323+0000] {standard_task_runner.py:91} INFO - Job 104: Subtask load_to_postgress
+[2026-02-15T08:14:33.409+0000] {task_command.py:426} INFO - Running <TaskInstance: my_first_dag.load_to_postgress manual__2026-02-15T08:11:50.514267+00:00 [running]> on host 50f0b91de738
+[2026-02-15T08:14:33.524+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='my_first_dag' AIRFLOW_CTX_TASK_ID='load_to_postgress' AIRFLOW_CTX_EXECUTION_DATE='2026-02-15T08:11:50.514267+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-15T08:11:50.514267+00:00'
+[2026-02-15T08:14:33.526+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-02-15T08:14:33.555+0000] {base.py:84} INFO - Using connection ID 'source_db' for task execution.
+[2026-02-15T08:14:33.556+0000] {sql.py:254} WARNING - This setter is for backward compatibility and should not be used.
+Since the introduction of connection property, the providers listed below breaks due to assigning value to self.connection in their __init__ method.
+* apache-***-providers-mysql<5.7.1
+* apache-***-providers-elasticsearch<5.5.1
+* apache-***-providers-postgres<5.13.0
+[2026-02-15T08:14:33.557+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-02-15T08:14:33.557+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/first_dag.py", line 52, in load_to_postgres
+    record['date'].split('T')[0], #Берем только дату
+    ~~~~~~^^^^^^^^
+KeyError: 'date'
+[2026-02-15T08:14:33.575+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=my_first_dag, task_id=load_to_postgress, run_id=manual__2026-02-15T08:11:50.514267+00:00, execution_date=20260215T081150, start_date=20260215T081433, end_date=20260215T081433
+[2026-02-15T08:14:33.589+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 104 for task load_to_postgress ('date'; 14612)
+[2026-02-15T08:14:33.616+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-02-15T08:14:33.641+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-15T08:14:33.645+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
