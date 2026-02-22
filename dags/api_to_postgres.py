@@ -28,38 +28,15 @@ default_args = {
 
 
 
-def get_last_date_from_db():
+def get_last_date_from_context(**context):
+    """ 
+    Получаем последнюю дату не из БД, а из расписания Airflow.
     """
+    #Для ежедневного DAG мы будем использовать execution_date за вчерашний день относительно запуска.
+    execution_date = context['execution_date'].date()
 
-    ШАГ ПЕРВЫЙ: Будем узнавать, какие данные уже есть в базе
-    Нужно чтобы загружать только новые данные
-    """
-    logger.info("Получаем последнюю дату из базы данных...")
-
-    #Подключаемся к PostgreSQL через специальный Hook
-    pg_hook = PostgresHook(postgres_conn_id=CONN_ID)
-
-    #Берем соединение
-    with pg_hook.get_conn() as conn:
-        #Создаем курсор для запросов
-        with conn.cursor() as cursor:
-            #SQL запрос: выберем максимальную дату для нашего тикера
-            cursor.execute("""
-            SELECT MAX(date)
-            FROM stock_prices
-            WHERE symbol = %s
-            """, (SYMBOL,))
-
-            #Получаем результат
-            result = cursor.fetchone()
-            last_date = result[0] if result else None
-
-            if last_date:
-                logger.info(f"Последняя дата в БД: {last_date}")
-            else:
-                logger.info("В БД пока нет данных")
-
-            return last_date
+    logger.info(f"Определяем дату загрузки из контекста: {execution_date}")
+    return execution_date
 
 
 
@@ -161,36 +138,25 @@ def main_load_function(**context):
     logger.info("="*50)
     logger.info("НАЧИНАЕМ ЗАГРУЗКУ ДАННЫХ")
     logger.info("="*50)
-
-    #1 получаем последнюю дату из бд
-    last_date = get_last_date_from_db()
-
-    #2 определяем с какой даты загружать
-    if last_date:
-        #если данные уже есть, будем загружать со следующего дня
-        start_date = (last_date + timedelta(days=1)).strftime('%Y-%m-%d')
-        logger.info(f"Режим дозагрузки данных с {start_date}")
-    else:
-        #если данных нет, загружаем последние DAYS_TO_LOAD дней
-        execution_date = context['execution_date'].date()
-        start_date = (execution_date - timedelta(days=DAYS_TO_LOAD)).strftime('%Y-%m-%d')
-        logger.info(f"Режим первая загрузка с {start_date}")
-
-    #Текущая дата выполнения как конечная дата
-    end_date = context['execution_date'].date().strftime('%Y-%m-%d')
-
-    #Проверяем есть ли что загружать
-    if start_date > end_date:
-        logger.info("Данные уже актуальны и загрузка не требуется")
-        return
     
-    #3 загружаем данные из Yfinance
+    # Вместо запроса к БД берем дату из контекста
+    # Логика: загружаем данные за дату выполнения DAG (execution_date)
+    target_date = context['execution_date'].date()
+    
+    # start_date = (target_date - timedelta(days=1)).strftime('%Y-%m-%d')
+    # end_date = target_date.strftime('%Y-%m-%d')
+    start_date = (target_date - timedelta(days=1)).strftime('%Y-%m-%d')
+    end_date = target_date.strftime('%Y-%m-%d') # yfinance end_date exclusive
+    
+    logger.info(f"Режим загрузки по расписанию: с {start_date} по {end_date}")
+
+    # 3 загружаем данные из Yfinance
     records = fetch_data_from_yfinance(start_date, end_date)
 
-    #4 сохраняем в postgresql
+    # 4 сохраняем в postgresql
     saved = save_to_postgres(records)
 
-    #5 сохраняем метрику в xcom для следующих задач
+    # 5 сохраняем метрику в xcom
     context['ti'].xcom_push(key='records_loaded', value=saved)
 
     logger.info('='*50)
